@@ -1,5 +1,5 @@
 from lxml import etree
-from pyjath import PyPath
+from pyjath import PyJath
 from io import StringIO
 import unittest
 
@@ -9,7 +9,7 @@ class TestPyPath(unittest.TestCase):
 		self.assertTrue(True)
 
 	def test_jath(self):
-		pp = PyPath()
+		pp = PyJath()
 		xml = u"""
 			<statuses userid="djn">
 				<status id="1">
@@ -34,7 +34,7 @@ class TestPyPath(unittest.TestCase):
 		self.assertEqual(actual, expected)
 
 	def test_jath_recursive(self):
-		pp = PyPath()
+		pp = PyJath()
 		xml = u""" 
 		<item name="foo">
 			<status code="1" />
@@ -68,7 +68,7 @@ class TestPyPath(unittest.TestCase):
 		#self.assertFail()
 
 	def test_jath_arraylike(self):
-		pp = PyPath()
+		pp = PyJath()
 
 		xml = u"""
 			<root>
@@ -96,7 +96,7 @@ class TestPyPath(unittest.TestCase):
 
 	def template_jath_test(self):
 		""" use this as a template for tests """
-		pp = PyPath()
+		pp = PyJath()
 
 		xml = u"""
 		"""
@@ -111,7 +111,7 @@ class TestPyPath(unittest.TestCase):
 
 
 	def test_jath_nested_array(self):
-		pp = PyPath()
+		pp = PyJath()
 
 		xml = u"""
 		<labels> 

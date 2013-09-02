@@ -4,7 +4,7 @@ def trace(msg):
 	#print msg
 	pass
 
-class PyPath(object):
+class PyJath(object):
 
 	def parse(self, template, xml):
 		if type(template) == dict:
