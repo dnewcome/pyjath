@@ -1,7 +1,7 @@
 from lxml import etree
 
 def trace(msg):
-	print msg
+	#print msg
 
 class PyPath(object):
 
