@@ -1,1 +1,1 @@
-python -m unittest test
+python -m unittest pyjath.test
