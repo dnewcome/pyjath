@@ -1,5 +1,5 @@
 from lxml import etree
-from pypath import PyPath
+from pyjath import PyPath
 from io import StringIO
 import unittest
 
