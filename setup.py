@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
 	name = "pyjath",
-	version = "0.0.1",
+	version = "0.0.3",
 	author = "Dan Newcome",
 	author_email = "dan@dnuke.com",
 	description = ("Template based xml to python data structure conversion."),
