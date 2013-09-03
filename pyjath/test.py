@@ -153,3 +153,36 @@ class TestPyPath(unittest.TestCase):
 		actual = pp.parse(template, tree)
 		expected = [{"id":"ep","added":"2003-06-10","address":[{"street":"45 Usura Place","city":"Hailey"}]},{"id":"ep2","added":"2003-06-20","address":[{"street":"3 Prufrock Lane","city":"Stamford"},{"street":"2nd address","city":"2nd city"},{"street":"3rd address","city":"3rd city"}]}]
 		self.assertEqual(actual, expected)
+
+		
+	def test_jath_namespace(self):
+		f = open('pyjath/labels-ns.xml')
+		""" use this as a template for tests """
+		pp = PyJath()
+		pp.namespaces = {"empty": "http://example.com", "lbl": "http://example.com/labelns"}
+
+		tree = etree.parse(f)
+		template = [ "//lbl:label", { "id": "@id", "added": "@added" } ];
+
+		actual = pp.parse(template, tree)
+
+		expected = [
+		  {
+			"id": "ep",
+			"added": "2003-06-10"
+		  },
+		  {
+			"id": "tse",
+			"added": "2003-06-20"
+		  },
+		  {
+			"id": "lh",
+			"added": "2004-11-01"
+		  },
+		  {
+			"id": "co",
+			"added": "2004-11-15"
+		  }
+		];
+
+		self.assertEqual(actual, expected)

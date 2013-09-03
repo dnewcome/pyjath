@@ -6,6 +6,8 @@ def trace(msg):
 
 class PyJath(object):
 
+	namespaces = None
+
 	def parse(self, template, xml):
 		if type(template) == dict:
 			return self.parse_dict(template, xml)
@@ -19,7 +21,7 @@ class PyJath(object):
 	def parse_list(self, template, xml):
 		trace('parsing list')	
 		retval = []
-		r = xml.xpath(template[0])
+		r = xml.xpath(template[0], namespaces=self.namespaces)
 		for i in range(0, len(r)):
 			retval.append(self.parse(template[1], r[i]))
 			
@@ -34,6 +36,6 @@ class PyJath(object):
 
 	def parse_item(self, template, xml):
 		trace('parsing item')	
-		node = xml.xpath(template)
+		node = xml.xpath(template, namespaces=self.namespaces)
 		return node[0] or node[0].text
 
