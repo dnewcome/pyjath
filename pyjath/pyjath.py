@@ -7,6 +7,7 @@ def trace(msg):
 class PyJath(object):
 
 	namespaces = None
+	literalChar = ':'
 
 	def parse(self, template, xml):
 		if type(template) == dict:
@@ -36,6 +37,9 @@ class PyJath(object):
 
 	def parse_item(self, template, xml):
 		trace('parsing item')	
-		node = xml.xpath(template, namespaces=self.namespaces)
-		return node[0] or node[0].text
+		if( type( template ) == str and template[:1] != self.literalChar ): 
+			node = xml.xpath(template, namespaces=self.namespaces)
+			return node[0] or node[0].text
+		else:
+			return template[1:]
 

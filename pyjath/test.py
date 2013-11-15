@@ -33,6 +33,31 @@ class TestPyPath(unittest.TestCase):
 		actual = pp.parse(template, tree)
 		self.assertEqual(actual, expected)
 
+	def test_literal(self):
+		pp = PyJath()
+		xml = u"""
+			<statuses userid="djn">
+				<status id="1">
+					<message>Hello</message>
+				</status>
+				<status id="3">
+					<message>Goodbye</message>
+				</status>
+			</statuses>
+		"""
+		sio = StringIO(xml)
+		tree = etree.parse(sio)
+
+		expected = [ 
+			{ "id": "1", "message": "Hello", "literal": "jath" }, 
+			{ "id": "3", "message": "Goodbye", "literal": "jath" } 
+		]
+
+
+		template = [ "//status", { "id": "@id", "message": "message", "literal": ":jath" } ]
+		actual = pp.parse(template, tree)
+		self.assertEqual(actual, expected)
+
 	def test_jath_recursive(self):
 		pp = PyJath()
 		xml = u""" 
