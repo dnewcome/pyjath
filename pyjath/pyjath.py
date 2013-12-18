@@ -8,6 +8,7 @@ class PyJath(object):
 
 	namespaces = None
 	literalChar = ':'
+	version = '0.0.6'
 
 	def parse(self, template, xml):
 		if type(template) == dict:
@@ -37,9 +38,9 @@ class PyJath(object):
 
 	def parse_item(self, template, xml):
 		trace('parsing item')	
-		if( type( template ) == str and template[:1] != self.literalChar ): 
+		if( type( template ) == str and template[:1] == self.literalChar ): 
+			return template[1:]
+		else:
 			node = xml.xpath(template, namespaces=self.namespaces)
 			return node[0] or node[0].text
-		else:
-			return template[1:]
 
